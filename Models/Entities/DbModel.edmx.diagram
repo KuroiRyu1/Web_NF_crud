@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2f48f3a5722c4be6a64f220de799b771" Name="Diagram1">
+        <EntityTypeShape EntityType="db_entityModel.tbl_category" Width="1.5" PointX="1.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_entityModel.tbl_product" Width="1.5" PointX="4.125" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="db_entityModel.fk_pro_to_cate" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

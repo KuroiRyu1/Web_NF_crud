@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "New_Product";
+}
+
+<h2>New_Product</h2>
+<form action="@Url.Action("create","product")" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-2">Category</div>
+        <div class="col-5">
+            <select name="category_Id" id="category_Id">
+                <option value="-1">Choose Category</option>
+                @{
+                    if (ViewBag.data != null)
+                    {
+                        var item = (HashSet<Web_NF_crud.Models.ModelView.CategoryView>)ViewBag.data;
+                        foreach (Web_NF_crud.Models.ModelView.CategoryView a in item)
+                        {
+                            <option value="@a.ID">@a.Name</option>
+                        }
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">Name :</div>
+        <div class="col-5">
+            <input type="text" value="" id="Name" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">Price</div>
+        <div class="col-5">
+            <input type="text" name="Price" value="0" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">Description</div>
+        <div class="col-10">
+            <input type="text" name="Description" value="" id="Description"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">Image</div>
+        <div class="col-4">
+            <input type="file" value="" id="Img" name="Img" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-4">
+            <button type="submit" name="btnSave" value="Save">Save</button>
+        </div>
+    </div>
+</form>
+

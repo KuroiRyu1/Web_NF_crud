@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<script>
+    var result = @ViewBag.msg;
+    switch (result) {
+        case 0: alert("Delete Failed"); break;
+        case 1: alert("Delete Success"); break;
+        case 2: alert("Exist product from category"); break;
+    }
+</script>
+
+<h2>Index</h2>
+<a href="@Url.Action("newCate")" class="btn btn-primary">
+    Add
+</a>
+@if (ViewBag.data != null)
+{
+    HashSet<Web_NF_crud.Models.ModelView.CategoryView> item = (HashSet<Web_NF_crud.Models.ModelView.CategoryView>)ViewBag.data;
+    <table class="table table-hover">
+        <tr class="bg-success text-bg-danger">
+            <th scope="col" class="col-2">Id</th>
+            <th scope="col" class="col-6">Name</th>
+            <th scope="col" class="col-2">Active</th>
+            <th scope="col" class="col-3">Function</th>
+        </tr>
+        @foreach (Web_NF_crud.Models.ModelView.CategoryView view in item)
+        {
+            <tr>
+                <td scope="row">@view.ID</td>
+                <td scope="row">@view.Name</td>
+                <td scope="row">
+                    @if (view.Active == 1)
+                    {
+                        <input type="checkbox" checked value="" data-id="@view.ID" onchange="updateStatus(event)"/>
+                    }
+                    else
+                    {
+                        <input type="checkbox" value="" data-id="@view.ID" onchange="updateStatus(event)"/>
+                    }
+                </td>
+                <td scope="row">
+                    <a href="@Url.Action("Edit",new {cate_id=view.ID})" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></a>
+                    <form action="@Url.Action("Delete",new {cate_id=view.ID})" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                        <input type="hidden" name="Id" value="@view.ID" />
+                    </form>
+                </td>
+
+            </tr>
+
+        }
+    </table>
+}
+@section scripts{
+    <script>
+        function updateStatus(e) {
+            var item = e.target; 
+            var checked = $(item).is(":checked");
+            var id = $(item).attr("data-id");
+            $.ajax({
+                method: "POST",
+                url: "@Url.Action("UpdateActive")",
+                data: { cate_id:id , cate_checked: checked==true?1:0}
+            })
+                .done(function (msg) {
+                    alert(msg);
+                });
+        }
+    </script>
+}
+

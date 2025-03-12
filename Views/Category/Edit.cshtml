@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+@{
+    if (ViewBag.data != null)
+    {
+        Web_NF_crud.Models.ModelView.CategoryView view = (Web_NF_crud.Models.ModelView.CategoryView)ViewBag.data;
+        <form action="@Url.Action("Edit2","Category")" method="post">
+            <div>
+                <label for="Name">Name</label>
+                <input name="Name" type="text" id="Name" value="@view.Name" />
+            </div>
+            <div>
+                <label for="Active">Active</label>
+                @if (view.Active == 1)
+                {
+                    <input name="Active" id="Active" type="checkbox" value="1" checked />
+                }
+                else
+                {
+                    <input name="Active" id="Active" type="checkbox" value="1" />
+                }
+            </div>
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="hidden" name="Id" value="@view.ID"/>
+                <a href="@Url.Action("index")" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    }
+
+}
+
+

@@ -1,0 +1,35 @@
+﻿@model Web_NF_crud.Models.ModelView.CategoryView
+@{
+    ViewBag.Title = "newCate";
+}
+<h2>New Category</h2>
+@*Razor code create form*@
+@*@Html.BeginForm(actionName:"Create","CategoryController",method:FormMethod.Post)@*@
+<form action="@Url.Action("Create","Category")" method="post">
+    <div>
+        <label for="Name">Name</label>
+        <input name="Name" type="text" id="Name" value=""/>
+    </div>
+    <div>
+        <label for="Active">Active</label>
+       <input name="Active" id="Active" type="checkbox" value="1"/>
+        @*
+               <input id="CateActive" type="checkbox"/>
+        <input type="hidden" name="Active" />
+        <script>
+            function ChangeActive(event) {
+                var item = event.target;
+                if (item.checked) {
+                    var Active = $("#Active");
+                    $(Active).val(1);
+                }
+            }
+        </script>
+        *@
+    </div>
+    <div>
+        <input type="submit" value="Save"/>
+        <input type="button" value="Cancel"/>
+    </div>
+</form>
+
