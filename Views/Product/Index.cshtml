@@ -2,18 +2,27 @@
 @{
     ViewBag.Title = "Index";
     HashSet<Web_NF_crud.Models.ModelView.ProductView> item = (HashSet<Web_NF_crud.Models.ModelView.ProductView>)ViewBag.data;
-
 }
 
 <h2>Index</h2>
+<a href="@Url.Action("New_Product")" class="btn btn-success">Add</a>
 <table class="table table-hover">
     <tr>
         <th>Id</th>
         <th>Name</th>
         <th>Image</th>
     </tr>
-    @foreach{ 
-        <tr></tr>
+    @foreach (Web_NF_crud.Models.ModelView.ProductView view in item)
+    {
+        <tr>
+            <td> @view.Id</td>
+            <td>
+                @view.Name
+            </td>
+            <td><img src="~/Content/images/@view.ImageName" height="30" width="30"/></td>
+        </tr>
+
+
     }
 </table>
 

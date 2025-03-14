@@ -15,6 +15,7 @@ namespace Web_NF_crud.Controllers
         public ActionResult Index()
         {
             var item = ProductRepository.Instance.All();
+            ViewBag.data = item;
             return View();
         }
         public ActionResult New_Product()
